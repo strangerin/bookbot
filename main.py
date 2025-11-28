@@ -1,5 +1,12 @@
+import sys
+from stats import count_words, count_letters
+
 def main():
-    book_path = input("Enter the path to the book: ")
+    if len(sys.argv) != 2:
+        print("Usage: python3 main.py <path_to_book>")
+        sys.exit(1)
+    #book_path = input("Enter the path to the book: ")
+    book_path = sys.argv[1]
     text = get_book_text(book_path)
     word_count = count_words(text)
     letter_count = count_letters(text)
@@ -11,29 +18,15 @@ def get_book_text(path):
         return f.read()
 
 
-def count_words(text):
-    return len(text.split())
-
-
-def count_letters(text):
-    count_letters = {}
-    for char in text:
-        if char.isalpha():
-            char_lower = char.lower()
-            if char_lower in count_letters:
-                count_letters[char_lower] += 1
-            else:
-                count_letters[char_lower] = 1
-    return count_letters
-
-
 def print_text_report(letter_count, word_count):
     sorted_letters = sorted(letter_count.items())
-    print("--- Begin report of books/frankenstein.txt ---")
+    print(f"--- Begin report of {sys.argv[1]} ---")
     total_words = word_count
-    print(f"{total_words} words found in the document\n")
+    #print(f"{total_words} words found in the document\n")
+    print(f"Found {total_words} total words")
     for char, count in sorted_letters:
-        print(f"The '{char}' character was found {count} times")
+        print(f"{char}: {count}")
+        #print(f"The '{char}' character was found {count} times")
     print("--- End report ---")
 
 
