@@ -1,3 +1,4 @@
 # bookbot
-Applet to retrieve stats from the text
+
+BookBot is my first [Boot.dev](https://www.boot.dev) project!
 
